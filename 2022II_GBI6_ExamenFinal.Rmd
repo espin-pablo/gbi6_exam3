@@ -3,15 +3,7 @@ title: "Bioinformática- GBI6"
 subtitle: "EXAMEN FINAL - 2022II"
 author: "ESPIN, Pablo"
 date: "`r Sys.Date()`"
-output:
-  html_document:
-    toc: yes
-    toc_depth: 4
-    highlight: espresso
-    theme: paper
-    toc_float:
-      collapsed: no
-      smooth_scroll: yes
+output: html_document
 ---
 
 ```{r setup, include=FALSE}
@@ -191,13 +183,19 @@ p4 <- ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm, color = sex))
   stat_poly_eq(formula = y ~ x, aes(label = paste(stat(eq.label), stat(adj.rr.label), sep = "*\", \"*")),
                label.x = "right", label.y = "top", size = 4)
 
+```
+
+```{r}
+library(ggcorrplot)
 penguins_clean <- na.omit(penguins)
 penguins_num <- penguins_clean[, c(3, 4, 5, 6)]
 penguins_corr <- cor(penguins_num)
 
 p5 <- ggcorrplot(penguins_corr, type = "upper", hc.order = TRUE, lab = TRUE, lab_size = 5, 
                  ggtheme = ggplot2::theme_gray, colors = c("blue", "white", "red"))
+```
 
+```{r}
 ggarrange(p3, p1 , ggarrange(p5, p4, p2, labels =c("p5", "p4", "p2"), nrow=3), 
           labels =c("p3", "p1"), ncol=3)
 
