@@ -24,53 +24,24 @@ Examen final del semestre OCT2022-MAR2023 de Bioinformática.
 
 -   Cayambe
 
--   Soltero \## Datos de mi pc:
+-   Soltero
 
-    \
-    <h1>Specifications PC</h1>
+## Datos de mi pc:
 
-    <table border="1">
+| Specifications PC |                                    |
+|-------------------|------------------------------------|
+| Pc Name           | Daniel Espin                       |
+| Procesador        | AMD Ryzen 5 Mobile U               |
+| RAM instalada     | 8 gb                               |
+| Sistema Operativo | Windows 11                         |
 
-    <tr>
+## R Version
 
-    <td>Pc name</td>
+R 4.2.2
 
-    <td>Danesp</td>
+### Paquetes
 
-    </tr>
-
-    <tr>
-
-    <td>procesador</td>
-
-    <td>AMD Ryzen 5 Mobile U</td>
-
-    </tr>
-
-    <tr>
-
-    <td>
-
-    RAM instalada\<!td\>
-
-    <td>
-
-    8.00gb\<!td\>
-
-    </tr>
-
-    <tr>
-
-    <td>tipo de sistema</td>
-
-    <td>WINDOWS 64bits</td>
-
-## Python Version
-
--   Python 3.10.4 \### Paquetes instalados Package Version
-    ------------------ ----------- biopython 1.80 jupyter_client 7.4.8
-    jupyter_core 5.1.0 jupyterlab-widgets 3.0.5 numpy 1.24.1 pandas
-    1.5.2 scipy 1.10.0 seaborn 0.12.2
+ggpmisc,ggplot2y, plotly, palmerpenguins, ggplot2, magrittr,ggpubr,tidyverse,ComplexHeatmap,viridis
 
 ## Data utilizada
 

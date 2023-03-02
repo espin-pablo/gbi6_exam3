@@ -107,6 +107,10 @@ img3 = "result/ejemplo1.png"
 cat(paste0('<center><img src="', img3,'" width="200" height="200" alt=""></center>')) 
 ```
 
+ggarrange(p3, ggarrange(p1, p2, labels =c("b", "c"), nrow=2),
+
+labels = "a", ncol=2)
+
 ```{r pressure, echo=FALSE, warning=FALSE, fig.height=8}
 ## Read dataset Palmer Penguins
 pinguinos = penguins
@@ -146,11 +150,11 @@ ggarrange(p3, ggarrange(p1, p2, labels =c("b", "c"), nrow=2),
 
 **INTERPRETACIÓN**
 
-En el grafico A se realiza un analisis de errores estándar entre el ancho del pico y el largo del pico de diferentes especies y su sexo. El color de cada linea está representado por la variable sex, lo que nos dice los diferentes puntos de color está determinado por los diferentes sexos de los pingüinos. Donde se muestra la relación entre la longitud del pico y la profundidad del pico. La dispersión tiene una línea de regresión lineal de mejor ajuste y un valor R cuadrado ajustado.
+En el grafico p1 se realiza un analisis de errores estándar entre el ancho del pico y el largo del pico de diferentes especies y su sexo. El color de cada linea está representado por la variable sex, lo que nos dice los diferentes puntos de color está determinado por los diferentes sexos de los pingüinos. Donde se muestra la relación entre la longitud del pico y la profundidad del pico. La dispersión tiene una línea de regresión lineal de mejor ajuste y un valor R cuadrado ajustado.
 
-En la figura B, se realiza una comparación entre la longitud de los picos con las especies de pinguino, cada color representa una especie de pingüino. En este gráfico de caja y bigotes, se comparan los puntos de datos entre diferentes especies. En este caso, el parámetro x se utiliza para especificar las especies que se quieren comparar, mientras que el parámetro y especifica los puntos de datos que se quieren comparar entre cada especie.
+En la figura p2, se realiza una comparación entre la longitud de los picos con las especies de pinguino, cada color representa una especie de pingüino. En este gráfico de caja y bigotes, se comparan los puntos de datos entre diferentes especies. En este caso, el parámetro x se utiliza para especificar las especies que se quieren comparar, mientras que el parámetro y especifica los puntos de datos que se quieren comparar entre cada especie.
 
-En la figura C, se empieza con la definición de los datos utilizados para el gráfico (pinguinos) junto con las variables que se asignarán a los ejes x e y (bill_length_mm y bill_depth_mm respectivamente). El color de los puntos del gráfico viene determinado por la variable especie. la función stat_poly_eq para calcular una ecuación polinómica de los datos y mostrarla en el gráfico.
+En la figura p3 se empieza con la definición de los datos utilizados para el gráfico (pinguinos) junto con las variables que se asignarán a los ejes x e y (bill_length_mm y bill_depth_mm respectivamente). El color de los puntos del gráfico viene determinado por la variable especie. la función stat_poly_eq para calcular una ecuación polinómica de los datos y mostrarla en el gráfico.
 
 ### [3.0 puntos] 1.2. Genere dos gráficas `p4` y `p5`donde:
 
@@ -173,9 +177,39 @@ cat(paste0('<center><img src="', img4,'" width="200" height="200" alt=""></cente
 ```{r p1.1, echo=TRUE, warning=FALSE, fig.height=8}
 # Escriba aquí su código
 
+
+p4 <- ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm, color = sex)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, na.rm = TRUE) +
+  scale_color_manual(values = c("#2596be", "#873e23")) +
+  facet_grid(rows = vars(sex), cols = vars(island)) +
+  labs(title = "Relación entre masa corporal y longitud de aleta de pingüinos",
+       x = "Masa corporal (g)", y = "Longitud de aleta (mm)",
+       color = "Sexo") +
+  theme_bw() +
+  theme(text = element_text(size = 12), legend.position = "bottom") +
+  stat_poly_eq(formula = y ~ x, aes(label = paste(stat(eq.label), stat(adj.rr.label), sep = "*\", \"*")),
+               label.x = "right", label.y = "top", size = 4)
+
+penguins_clean <- na.omit(penguins)
+penguins_num <- penguins_clean[, c(3, 4, 5, 6)]
+penguins_corr <- cor(penguins_num)
+
+p5 <- ggcorrplot(penguins_corr, type = "upper", hc.order = TRUE, lab = TRUE, lab_size = 5, 
+                 ggtheme = ggplot2::theme_gray, colors = c("blue", "white", "red"))
+
+ggarrange(p3, p1 , ggarrange(p5, p4, p2, labels =c("p5", "p4", "p2"), nrow=3), 
+          labels =c("p3", "p1"), ncol=3)
+
 ```
 
 **INTERPRETACIÓN**
+
+El gráfico p4 muestra la relación entre la masa corporal y la longitud de la aleta de los pingüinos. Cada punto en el gráfico representa un pingüino y está coloreado según su sexo, con machos en azul y hembras en marrón. El gráfico también está dividido en paneles según la isla de origen del pingüino.
+
+Se puede observar que hay una relación positiva entre la masa corporal y la longitud de la aleta, lo que sugiere que los pingüinos más grandes tienen aletas más largas. Además, la línea de regresión ajustada (en azul para machos y en marrón para hembras) muestra una pendiente positiva en ambos casos, lo que indica que la relación entre la masa corporal y la longitud de la aleta es similar para ambos sexos.
+
+El gráfico también muestra el coeficiente de determinación (\$R\^2\$) en la ecuación de regresión para cada panel, lo que indica la cantidad de variabilidad en la longitud de la aleta que se explica por la masa corporal. En general, el \$R\^2\$ es bastante alto, lo que sugiere que la masa corporal es un predictor bastante bueno de la longitud de la aleta.
 
 # [4.0 PUNTOS] 2. MAPAS DE CALOR DE EXPRESIÓN GÉNICA
 
@@ -239,6 +273,10 @@ Realice una descripción de lo que observa en el mapa de calor considerando:
 -   el tipo de suero
 
 **INTERPRETACIÓN:**
+
+En el mapa de calor, los valores de las distancias están representados por colores, donde los tonos más oscuros indican distancias más grandes y los tonos más claros indican distancias más pequeñas.
+
+En la parte superior del mapa de calor, hay dos anotaciones: "Tiempo" y "Suero". "Tiempo" indica el tiempo de exposición al tratamiento y está representado por dos colores: el morado oscuro para 24 horas y el morado claro para 48 horas. "Suero" indica el tipo de suero utilizado y está representado por dos colores: el naranja oscuro para HS y el naranja claro para HIHS.
 
 ## [3.0 puntos] 2.2. Mapa de calor artritis reumatoide.
 
