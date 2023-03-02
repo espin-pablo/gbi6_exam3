@@ -209,8 +209,6 @@ El gráfico p4 muestra la relación entre la masa corporal y la longitud de la a
 
 Se puede observar que hay una relación positiva entre la masa corporal y la longitud de la aleta, lo que sugiere que los pingüinos más grandes tienen aletas más largas. Además, la línea de regresión ajustada (en azul para machos y en marrón para hembras) muestra una pendiente positiva en ambos casos, lo que indica que la relación entre la masa corporal y la longitud de la aleta es similar para ambos sexos.
 
-El gráfico también muestra el coeficiente de determinación (\$R\^2\$) en la ecuación de regresión para cada panel, lo que indica la cantidad de variabilidad en la longitud de la aleta que se explica por la masa corporal. En general, el \$R\^2\$ es bastante alto, lo que sugiere que la masa corporal es un predictor bastante bueno de la longitud de la aleta.
-
 # [4.0 PUNTOS] 2. MAPAS DE CALOR DE EXPRESIÓN GÉNICA
 
 Los datos de expresión de genes son extensos, hay una gran cantidad de genes y asimismo una gran cantidad de muestras de tejidos o lineas celulares. En este ejemplo se desea ver el nivel de relación de las muestras de diferentes tipos de tejidos en base a las cuantificaciones de niveles de expresión genética. La data ejemplo es sintética, y están guardadas en forma de tablas y se cargan con la función `load('nombre.RData')`. Está basado en [Simple guide to heatmaps](https://davemcg.github.io/post/simple-heatmaps-with-complexheatmaps/).
