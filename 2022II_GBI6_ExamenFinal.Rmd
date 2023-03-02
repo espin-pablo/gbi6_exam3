@@ -146,6 +146,12 @@ ggarrange(p3, ggarrange(p1, p2, labels =c("b", "c"), nrow=2),
 
 **INTERPRETACIÓN**
 
+En el grafico A se realiza un analisis de errores estándar entre el ancho del pico y el largo del pico de diferentes especies y su sexo. El color de cada linea está representado por la variable sex, lo que nos dice los diferentes puntos de color está determinado por los diferentes sexos de los pingüinos. Donde se muestra la relación entre la longitud del pico y la profundidad del pico. La dispersión tiene una línea de regresión lineal de mejor ajuste y un valor R cuadrado ajustado.
+
+En la figura B, se realiza una comparación entre la longitud de los picos con las especies de pinguino, cada color representa una especie de pingüino. En este gráfico de caja y bigotes, se comparan los puntos de datos entre diferentes especies. En este caso, el parámetro x se utiliza para especificar las especies que se quieren comparar, mientras que el parámetro y especifica los puntos de datos que se quieren comparar entre cada especie.
+
+En la figura C, se empieza con la definición de los datos utilizados para el gráfico (pinguinos) junto con las variables que se asignarán a los ejes x e y (bill_length_mm y bill_depth_mm respectivamente). El color de los puntos del gráfico viene determinado por la variable especie. la función stat_poly_eq para calcular una ecuación polinómica de los datos y mostrarla en el gráfico.
+
 ### [3.0 puntos] 1.2. Genere dos gráficas `p4` y `p5`donde:
 
 -   `p4` es una regresión de `x: body_mass_g` y `y: flipper_length_mm`, que tiene inserto la ecuación de la regresión y el $R^2$. Asimismo tiene una coloración por sexo, y una separación por sexo e isla.
